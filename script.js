@@ -48,7 +48,7 @@ window.addEventListener('scroll', () => {
 
 // Typed.js for Multiple Text
 const typed = new Typed('.multiple-text', {
-    strings: ['Web Developer', 'UI/UX Designer', 'Digital Marketer', 'Freelancer'],
+    strings: ['Flutter Developer', 'UI/UX Designer', 'Web Developer', 'Freelancer'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
@@ -112,3 +112,27 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 observer.observe(skillsSection);
+
+// Highlight current section in navbar
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.navbar a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= (sectionTop - 300)) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+        }
+    });
+});

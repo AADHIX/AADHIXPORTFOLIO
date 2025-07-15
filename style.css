@@ -52,6 +52,7 @@ section {
     padding: 10rem 9% 2rem;
 }
 
+/* Header Styles */
 .header {
     position: fixed;
     top: 0;
@@ -110,11 +111,13 @@ section {
     transform: rotate(30deg);
 }
 
+/* Home Section */
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--bg-color);
+    gap: 4rem;
 }
 
 .home-content h3 {
@@ -142,8 +145,11 @@ span {
 }
 
 .home-img img {
-    width: 35vw;
+    max-width: 300px;
+    height: auto;
     animation: floatImage 4s ease-in-out infinite;
+    border-radius: 50%;
+    border: 0.5rem solid var(--main-color);
 }
 
 @keyframes floatImage {
@@ -196,6 +202,7 @@ span {
     box-shadow: none;
 }
 
+/* About Section */
 .about {
     display: flex;
     justify-content: center;
@@ -206,6 +213,7 @@ span {
 
 .about-img img {
     width: 35vw;
+    border-radius: 2rem;
 }
 
 .heading {
@@ -250,6 +258,7 @@ span {
     color: var(--text-color);
 }
 
+/* Skills Section */
 .skills {
     background: var(--bg-color);
 }
@@ -318,6 +327,7 @@ span {
     transition: width 1.5s ease-in-out;
 }
 
+/* Projects Section */
 .projects {
     background: var(--second-bg-color);
 }
@@ -395,6 +405,72 @@ span {
     color: var(--second-bg-color);
 }
 
+/* Projects Details Page Styles */
+.projects-details {
+    background: var(--second-bg-color);
+    padding: 10rem 9% 2rem;
+}
+
+.project-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.project-detail-box {
+    background: var(--bg-color);
+    padding: 3rem;
+    border-radius: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.project-detail-box h3 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--main-color);
+}
+
+.project-detail-box img {
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.project-info h4 {
+    font-size: 2rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--main-color);
+}
+
+.tech-list, .features-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+
+.tech-list li, .features-list li {
+    background: var(--second-bg-color);
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.project-links .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Certificates Section */
 .certificates {
     background: var(--bg-color);
 }
@@ -440,6 +516,7 @@ span {
     margin-bottom: 1.5rem;
 }
 
+/* Services Section */
 .services {
     background: var(--second-bg-color);
 }
@@ -485,6 +562,7 @@ span {
     margin: 1rem 0 3rem;
 }
 
+/* Contact Section */
 .contact {
     background: var(--bg-color);
 }
@@ -530,6 +608,7 @@ span {
     cursor: pointer;
 }
 
+/* Footer */
 .footer {
     display: flex;
     justify-content: space-between;
@@ -656,12 +735,26 @@ span {
     .certificates-container {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Projects Details Page Responsive */
+    .project-detail-box {
+        padding: 2rem;
+    }
+
+    .project-info h4 {
+        font-size: 1.8rem;
+    }
 }
 
 @media (max-width: 617px) {
     .projects-container,
     .certificates-container {
         grid-template-columns: 1fr;
+    }
+
+    .project-links {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -672,6 +765,10 @@ span {
     
     .contact form .input-box input {
         width: 100%;
+    }
+
+    .home-img img {
+        max-width: 200px;
     }
 }
 
