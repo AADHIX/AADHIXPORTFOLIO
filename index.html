@@ -125,10 +125,15 @@
             text-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
         }
 
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .navbar a {
             font-size: 1.8rem;
             color: var(--text-color);
-            margin-left: 4rem;
             font-weight: 500;
             transition: var(--transition);
             position: relative;
@@ -151,6 +156,29 @@
         .navbar a:hover::after,
         .navbar a.active::after {
             width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--glass-bg);
+            transform: scale(1.1);
+        }
+
+        #menu-icon {
+            display: none;
+            font-size: 3.6rem;
+            color: var(--text-color);
+            cursor: pointer;
         }
 
         /* Enhanced Home Section with Larger Fonts */
@@ -242,6 +270,8 @@
 
         .multiple-text {
             position: relative;
+            display: inline-block;
+            min-height: 1.2em;
         }
 
         .multiple-text::after {
@@ -530,6 +560,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            min-height: 400px;
         }
 
         .skills-box::before {
@@ -545,6 +576,94 @@
         .skills-box:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 25px 60px var(--glass-shadow);
+        }
+
+        .skill-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .skills-box:hover .skill-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .skill-card-front,
+        .skill-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .skill-card-back {
+            transform: rotateY(180deg);
+            text-align: left;
+        }
+
+        .skill-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .flip-indicator {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.4rem;
+            opacity: 0.7;
+        }
+
+        .skill-bars-container {
+            width: 100%;
+        }
+
+        .skill-item {
+            margin-bottom: 2rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .skill-percentage {
+            font-size: 1.4rem;
+            color: var(--main-color);
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--glass-bg);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
         }
 
         /* Enhanced Projects Section */
@@ -566,9 +685,58 @@
             height: 350px;
         }
 
+        .projects-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .projects-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, var(--main-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 4rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .projects-box:hover .projects-layer {
+            transform: translateY(0);
+        }
+
+        .projects-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .projects-layer h4 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .projects-layer p {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
         .projects-box:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 25px 60px var(--glass-shadow);
+        }
+
+        .view-all {
+            text-align: center;
+            margin-top: 6rem;
         }
 
         /* Enhanced Certificates Section */
@@ -593,12 +761,95 @@
             box-shadow: 0 25px 60px var(--glass-shadow);
         }
 
+        .rive-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-glass);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .certificate-box:hover .certificate-overlay {
+            opacity: 1;
+        }
+
+        .certificate-overlay i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-overlay h3 {
+            font-size: 2.4rem;
+            text-align: center;
+        }
+
+        .certificate-content {
+            padding: 3rem;
+        }
+
+        .certificate-content h3 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--main-color);
+        }
+
+        .certificate-content p {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .certificate-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.4rem;
+            opacity: 0.8;
+        }
+
         /* Enhanced Contact Section */
         .contact form {
             max-width: 80rem;
             margin: 1rem auto;
             text-align: center;
             margin-bottom: 5rem;
+        }
+
+        .contact form .input-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact form .input-box input {
+            flex: 1 1 45%;
         }
 
         .contact form .input-box input,
@@ -622,6 +873,11 @@
             transform: translateY(-5px);
         }
 
+        .contact form textarea {
+            resize: none;
+            margin-bottom: 3rem;
+        }
+
         /* Enhanced Footer */
         .footer {
             display: flex;
@@ -631,6 +887,63 @@
             padding: 3rem 9%;
             background: var(--second-bg-color);
             border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-text p {
+            font-size: 1.6rem;
+        }
+
+        .footer-iconTop a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background: var(--main-color);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .footer-iconTop a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--main-color);
+        }
+
+        .footer-iconTop a i {
+            font-size: 2.4rem;
+            color: var(--bg-color);
+        }
+
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            transition: opacity 0.3s;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--main-color);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--main-color);
+            transition: all 0.2s ease-out;
+        }
+
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            border-color: var(--accent-color);
+            background: rgba(139, 92, 246, 0.1);
         }
 
         /* Animations */
@@ -699,9 +1012,47 @@
             .home-content h3 {
                 font-size: 3.5rem;
             }
+
+            .about {
+                flex-direction: column;
+                gap: 4rem;
+            }
+
+            .about-img img {
+                width: 70vw;
+            }
         }
 
         @media (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 3%;
+                background: var(--bg-color);
+                border-top: 1px solid var(--glass-border);
+                box-shadow: 0 8px 32px var(--glass-shadow);
+                display: none;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .navbar.active {
+                display: flex;
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+                text-align: center;
+            }
+
             .home {
                 flex-direction: column;
                 text-align: center;
@@ -718,6 +1069,26 @@
 
             .home-img img {
                 max-width: 320px;
+            }
+
+            .about-details {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container,
+            .projects-container,
+            .certificates-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact form .input-box input {
+                flex: 1 1 100%;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
             }
         }
 
@@ -736,6 +1107,12 @@
 
             .heading {
                 font-size: 4.5rem;
+            }
+
+            .skills-container,
+            .projects-container,
+            .certificates-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -761,13 +1138,11 @@
 </header>
 
 <!-- Home Section -->
-
 <section class="home" id="home">
     <div class="home-content">
         <h3>Hello, It's Me</h3>
         <h1>Adarsh Ajay</h1>
-        <h3>And I'm a <span class="multiple-text"></span></h3>
-
+        <h3>And I'm a <span class="multiple-text">Flutter Developer</span></h3>
         <p>Passionate about building cross-platform applications with Flutter. Creating beautiful, performant mobile experiences that users love.</p>
         <div class="social-media">
             <a href="https://github.com/AADHIX" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -780,7 +1155,6 @@
         <img src="assets/images/profilee.png" alt="Adarsh Ajay - Flutter Developer" loading="lazy">
     </div>
 </section>
-
 
 <!-- About Section -->
 <section class="about" id="about">
@@ -825,30 +1199,27 @@
     </div>
 </section>
 
-<!-- Enhanced Skills Section -->
+<!-- Skills Section -->
 <section class="skills" id="skills">
     <h2 class="heading">My <span>Skills</span></h2>
     <div class="skills-container">
-        <!-- Application Development Card -->
+        <!-- Technical Skills -->
         <div class="skills-box glass-card">
             <div class="skill-card-inner">
                 <div class="skill-card-front">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Application Development</h3>
-                    <p>Android, iOS & Web Development</p>
+                    <i class="fas fa-code skill-icon"></i>
+                    <h3>Technical Skills</h3>
+                    <p>Click to view my technical expertise</p>
                     <div class="flip-indicator">
                         <i class="fas fa-sync-alt"></i>
-                        <span>Click to view skills</span>
+                        <span>Hover to flip</span>
                     </div>
                 </div>
                 <div class="skill-card-back">
-                    <h3>Development Skills</h3>
                     <div class="skill-bars-container">
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">Dart Programming</span>
+                                <span class="skill-name">Flutter & Dart</span>
                                 <span class="skill-percentage">90%</span>
                             </div>
                             <div class="skill-bar">
@@ -857,56 +1228,7 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">Flutter Framework</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">UI/UX Design Principles</span>
-                                <span class="skill-percentage">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Backend Integration</span>
-                                <span class="skill-percentage">65%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="65"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- UI/UX Design Card -->
-        <div class="skills-box glass-card">
-            <div class="skill-card-inner">
-                <div class="skill-card-front">
-                    <div class="skill-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>UI/UX Design</h3>
-                    <p>Creative Design Tools & Principles</p>
-                    <div class="flip-indicator">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>Click to view skills</span>
-                    </div>
-                </div>
-                <div class="skill-card-back">
-                    <h3>Design Skills</h3>
-                    <div class="skill-bars-container">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Figma Design</span>
+                                <span class="skill-name">Firebase</span>
                                 <span class="skill-percentage">85%</span>
                             </div>
                             <div class="skill-bar">
@@ -915,29 +1237,20 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">Adobe XD</span>
-                                <span class="skill-percentage">70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Procreate</span>
-                                <span class="skill-percentage">65%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="65"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Wireframing</span>
+                                <span class="skill-name">RESTful APIs</span>
                                 <span class="skill-percentage">80%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Git & GitHub</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
                             </div>
                         </div>
                     </div>
@@ -945,26 +1258,23 @@
             </div>
         </div>
 
-        <!-- Professional Skills Card -->
+        <!-- Soft Skills -->
         <div class="skills-box glass-card">
             <div class="skill-card-inner">
                 <div class="skill-card-front">
-                    <div class="skill-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Professional Skills</h3>
-                    <p>Soft Skills & Management</p>
+                    <i class="fas fa-users skill-icon"></i>
+                    <h3>Soft Skills</h3>
+                    <p>Click to view my interpersonal skills</p>
                     <div class="flip-indicator">
                         <i class="fas fa-sync-alt"></i>
-                        <span>Click to view skills</span>
+                        <span>Hover to flip</span>
                     </div>
                 </div>
                 <div class="skill-card-back">
-                    <h3>Professional Skills</h3>
                     <div class="skill-bars-container">
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">Project Management</span>
+                                <span class="skill-name">Problem Solving</span>
                                 <span class="skill-percentage">95%</span>
                             </div>
                             <div class="skill-bar">
@@ -973,25 +1283,16 @@
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">Public Speaking</span>
-                                <span class="skill-percentage">80%</span>
+                                <span class="skill-name">Team Collaboration</span>
+                                <span class="skill-percentage">90%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
+                                <div class="skill-progress" data-width="90"></div>
                             </div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-info">
-                                <span class="skill-name">Technical Writing</span>
-                                <span class="skill-percentage">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Critical Thinking</span>
+                                <span class="skill-name">Communication</span>
                                 <span class="skill-percentage">85%</span>
                             </div>
                             <div class="skill-bar">
@@ -1001,10 +1302,65 @@
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">Time Management</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools & Technologies -->
+        <div class="skills-box glass-card">
+            <div class="skill-card-inner">
+                <div class="skill-card-front">
+                    <i class="fas fa-tools skill-icon"></i>
+                    <h3>Tools & Tech</h3>
+                    <p>Click to view tools I work with</p>
+                    <div class="flip-indicator">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Hover to flip</span>
+                    </div>
+                </div>
+                <div class="skill-card-back">
+                    <div class="skill-bars-container">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Android Studio</span>
                                 <span class="skill-percentage">90%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">VS Code</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Figma</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Postman</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
                             </div>
                         </div>
                     </div>
@@ -1016,46 +1372,40 @@
 
 <!-- Projects Section -->
 <section class="projects" id="projects">
-    <h2 class="heading">My <span>Projects</span></h2>
+    <h2 class="heading">Latest <span>Projects</span></h2>
     <div class="projects-container">
+        <!-- Project 1 -->
         <div class="projects-box glass-card">
-            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Kcal - Smart Parking System" loading="lazy">
+            <img src="assets/images/project1.jpg" alt="Project 1">
             <div class="projects-layer">
-                <h4>Kcal</h4>
-                <p>An IoT based smart parking system with real-time monitoring</p>
-                <a href="projects.html#project1" class="btn">View Details</a>
+                <h4>E-Commerce App</h4>
+                <p>Flutter-based e-commerce application with Firebase backend, payment integration, and real-time inventory management.</p>
+                <a href="#"><i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
 
+        <!-- Project 2 -->
         <div class="projects-box glass-card">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="BMI Calculator" loading="lazy">
+            <img src="assets/images/project2.jpg" alt="Project 2">
             <div class="projects-layer">
-                <h4>BMI Calculator</h4>
-                <p>Health tracking app with personalized recommendations</p>
-                <a href="projects.html#project2" class="btn">View Details</a>
+                <h4>Weather App</h4>
+                <p>Real-time weather forecasting app with beautiful UI, location-based services, and detailed weather analytics.</p>
+                <a href="#"><i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
 
+        <!-- Project 3 -->
         <div class="projects-box glass-card">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pokepedia" loading="lazy">
-            <div class="projects-layer">
-                <h4>Pokepedia</h4>
-                <p>Comprehensive Pokémon database and collection manager</p>
-                <a href="projects.html#project3" class="btn">View Details</a>
-            </div>
-        </div>
-
-        <div class="projects-box glass-card">
-            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1139&q=80" alt="Task Manager" loading="lazy">
+            <img src="assets/images/project3.jpg" alt="Project 3">
             <div class="projects-layer">
                 <h4>Task Manager</h4>
-                <p>Productivity app for managing daily tasks and projects</p>
-                <a href="projects.html#project4" class="btn">View Details</a>
+                <p>Productivity app with task management, reminders, and collaborative features using Flutter and SQLite.</p>
+                <a href="#"><i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
     </div>
     <div class="view-all">
-        <a href="projects.html" class="btn">View All Projects</a>
+        <a href="#" class="btn">View All Projects</a>
     </div>
 </section>
 
@@ -1063,93 +1413,78 @@
 <section class="certificates" id="certificates">
     <h2 class="heading">My <span>Certificates</span></h2>
     <div class="certificates-container">
-        <!-- UI/UX Design Certificate -->
+        <!-- Certificate 1 -->
         <div class="certificate-box glass-card">
             <div class="rive-container">
-                <!-- Design Tools Animation -->
-                <iframe src="https://rive.app/s/4hJ9QrV6YVQxQ2Yq9QhJtw/embed" width="400" height="300" frameborder="0"></iframe>
                 <div class="certificate-overlay">
-                    <i class="fas fa-palette"></i>
-                    <h3>UI/UX Design Certified</h3>
+                    <i class="fas fa-certificate"></i>
+                    <h3>Flutter Development</h3>
                 </div>
             </div>
             <div class="certificate-content">
-                <h3>Figma UI/UX Design</h3>
-                <p>Mastered user interface design, prototyping, and design systems using Figma</p>
+                <h3>Flutter & Dart - The Complete Guide</h3>
+                <p>Comprehensive Flutter development course covering Dart programming, widget tree, state management, and app deployment.</p>
                 <div class="certificate-stats">
                     <div class="stat">
                         <i class="fas fa-clock"></i>
-                        <span>120 Hours</span>
+                        <span>45 hours</span>
                     </div>
                     <div class="stat">
                         <i class="fas fa-star"></i>
-                        <span>Advanced Level</span>
+                        <span>4.8/5</span>
                     </div>
                 </div>
-                <a href="assets/certificates/figma.pdf" target="_blank" class="btn">
-                    <i class="fas fa-external-link-alt"></i>
-                    View Certificate
-                </a>
+                <a href="#" class="btn">View Certificate</a>
             </div>
         </div>
 
-        <!-- Flutter Development Certificate -->
+        <!-- Certificate 2 -->
         <div class="certificate-box glass-card">
             <div class="rive-container">
-                <!-- Mobile App Development Animation -->
-                <iframe src="https://rive.app/s/7qj8K9V6YVQxQ2Yq9QhJtw/embed" width="400" height="300" frameborder="0"></iframe>
                 <div class="certificate-overlay">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Flutter Developer</h3>
+                    <i class="fas fa-certificate"></i>
+                    <h3>Firebase Mastery</h3>
                 </div>
             </div>
             <div class="certificate-content">
-                <h3>Flutter Development</h3>
-                <p>Cross-platform mobile app development with Dart and Flutter framework</p>
+                <h3>Firebase for Flutter Developers</h3>
+                <p>Master Firebase services including Authentication, Cloud Firestore, Cloud Storage, and Cloud Functions integration.</p>
                 <div class="certificate-stats">
                     <div class="stat">
                         <i class="fas fa-clock"></i>
-                        <span>200 Hours</span>
+                        <span>30 hours</span>
                     </div>
                     <div class="stat">
                         <i class="fas fa-star"></i>
-                        <span>Expert Level</span>
+                        <span>4.7/5</span>
                     </div>
                 </div>
-                <a href="assets/certificates/flutter.pdf" target="_blank" class="btn">
-                    <i class="fas fa-external-link-alt"></i>
-                    View Certificate
-                </a>
+                <a href="#" class="btn">View Certificate</a>
             </div>
         </div>
 
-        <!-- IoT Certificate -->
+        <!-- Certificate 3 -->
         <div class="certificate-box glass-card">
             <div class="rive-container">
-                <!-- IoT Devices Animation -->
-                <iframe src="https://rive.app/s/8rK7L0V6YVQxQ2Yq9QhJtw/embed" width="400" height="300" frameborder="0"></iframe>
                 <div class="certificate-overlay">
-                    <i class="fas fa-microchip"></i>
-                    <h3>IoT Specialist</h3>
+                    <i class="fas fa-certificate"></i>
+                    <h3>Advanced Dart</h3>
                 </div>
             </div>
             <div class="certificate-content">
-                <h3>Internet of Things</h3>
-                <p>IoT systems architecture, embedded programming, and sensor networks</p>
+                <h3>Dart Programming - Advanced Concepts</h3>
+                <p>Advanced Dart programming concepts including asynchronous programming, streams, isolates, and effective Dart patterns.</p>
                 <div class="certificate-stats">
                     <div class="stat">
                         <i class="fas fa-clock"></i>
-                        <span>150 Hours</span>
+                        <span>25 hours</span>
                     </div>
                     <div class="stat">
                         <i class="fas fa-star"></i>
-                        <span>Intermediate Level</span>
+                        <span>4.9/5</span>
                     </div>
                 </div>
-                <a href="assets/certificates/iot.pdf" target="_blank" class="btn">
-                    <i class="fas fa-external-link-alt"></i>
-                    View Certificate
-                </a>
+                <a href="#" class="btn">View Certificate</a>
             </div>
         </div>
     </div>
@@ -1157,15 +1492,15 @@
 
 <!-- Contact Section -->
 <section class="contact" id="contact">
-    <h2 class="heading">Contact <span>Me</span></h2>
-    <form action="#" id="contact-form" class="glass-card" style="padding: 4rem; border-radius: 2rem;">
+    <h2 class="heading">Contact <span>Me!</span></h2>
+    <form action="#">
         <div class="input-box">
             <input type="text" placeholder="Full Name" required>
             <input type="email" placeholder="Email Address" required>
         </div>
         <div class="input-box">
             <input type="tel" placeholder="Mobile Number">
-            <input type="text" placeholder="Email Subject" required>
+            <input type="text" placeholder="Email Subject">
         </div>
         <textarea cols="30" rows="10" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn">Send Message</button>
@@ -1178,20 +1513,14 @@
         <p>Copyright &copy; 2024 by Adarsh Ajay | All Rights Reserved.</p>
     </div>
     <div class="footer-iconTop">
-        <a href="#home" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+        <a href="#home"><i class="fas fa-arrow-up"></i></a>
     </div>
 </footer>
 
-<div class="cursor-dot" data-cursor-dot></div>
-<div class="cursor-outline" data-cursor-outline></div>
+<!-- Custom Cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
-<!-- Scroll Reveal -->
-<script src="https://unpkg.com/scrollreveal"></script>
-
-<!-- Typed JS -->
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
-<!-- Custom JS -->
 <script src="script.js"></script>
 </body>
 </html>
