@@ -4,11 +4,434 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects | Adarsh Ajay</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #121212;
+            --second-bg-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --main-color: #bb86fc;
+            --accent-color: #03dac6;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --gradient-1: linear-gradient(135deg, #bb86fc, #03dac6);
+            --gradient-2: linear-gradient(135deg, #03dac6, #3700b3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --second-bg-color: #f5f5f5;
+            --text-color: #333333;
+            --main-color: #6200ee;
+            --accent-color: #03dac6;
+            --card-bg: rgba(0, 0, 0, 0.05);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 9%;
+            background: var(--second-bg-color);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow-color);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--main-color);
+            text-decoration: none;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .navbar a {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .navbar a:hover {
+            color: var(--main-color);
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--main-color);
+            transition: var(--transition);
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--main-color);
+            transform: rotate(30deg);
+        }
+
+        #menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Projects Details Section */
+        .projects-details {
+            padding: 120px 9% 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 4rem;
+            font-weight: 800;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .heading span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .heading span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 4px;
+        }
+
+        .project-detail-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+        }
+
+        .project-detail-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s forwards;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] .project-detail-box {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .project-detail-box:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project-detail-box:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .project-detail-box:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-detail-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .project-detail-box h3 {
+            font-size: 2.5rem;
+            padding: 2rem 3rem 1rem;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .project-detail-box img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-detail-box:hover img {
+            transform: scale(1.03);
+        }
+
+        .project-info {
+            padding: 2rem 3rem 3rem;
+        }
+
+        .project-info h4 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .project-info p {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .tech-list, .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+            list-style: none;
+        }
+
+        .tech-list li, .features-list li {
+            background: var(--gradient-1);
+            color: #121212;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tech-list li:hover, .features-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-1);
+            color: #121212;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(187, 134, 252, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--second-bg-color);
+            color: var(--text-color);
+            padding: 2rem 9%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5rem;
+        }
+
+        .footer-text p {
+            font-size: 1.1rem;
+        }
+
+        .footer-iconTop a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8rem;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: #121212;
+        }
+
+        .footer-iconTop a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .header {
+                padding: 1.5rem 5%;
+            }
+
+            .projects-details {
+                padding: 120px 5% 80px;
+            }
+
+            .heading {
+                font-size: 3.5rem;
+            }
+
+            .project-detail-box h3 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 5%;
+                background: var(--second-bg-color);
+                backdrop-filter: blur(10px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+            }
+
+            [data-theme="light"] .navbar {
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .heading {
+                font-size: 3rem;
+            }
+
+            .project-detail-box h3 {
+                font-size: 2rem;
+                padding: 1.5rem 2rem 1rem;
+            }
+
+            .project-info {
+                padding: 1.5rem 2rem 2rem;
+            }
+
+            .project-info h4 {
+                font-size: 1.6rem;
+            }
+
+            .project-info p {
+                font-size: 1.2rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heading {
+                font-size: 2.5rem;
+            }
+
+            .project-detail-box h3 {
+                font-size: 1.8rem;
+            }
+
+            .project-info h4 {
+                font-size: 1.4rem;
+            }
+
+            .project-info p {
+                font-size: 1.1rem;
+            }
+
+            .tech-list li, .features-list li {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
 </head>
-<body>
+<body data-theme="dark">
 <!-- Header/Navbar -->
 <header class="header">
     <a href="index.html" class="logo">AD</a>
@@ -34,7 +457,7 @@
         <!-- Project 1 -->
         <div id="project1" class="project-detail-box">
             <h3>Kcal - Smart Parking System</h3>
-            <img src="assets/images/project1.jpg" alt="Kcal Smart Parking System" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Kcal Smart Parking System" loading="lazy">
             <div class="project-info">
                 <h4>Description</h4>
                 <p>An IoT-based smart parking system that helps users find available parking spots in real-time. The system uses sensors to detect vehicle presence and provides mobile app integration for seamless parking experience.</p>
@@ -68,7 +491,7 @@
         <!-- Project 2 -->
         <div id="project2" class="project-detail-box">
             <h3>BMI Calculator & Health Tracker</h3>
-            <img src="assets/images/project2.jpg" alt="BMI Calculator App" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="BMI Calculator App" loading="lazy">
             <div class="project-info">
                 <h4>Description</h4>
                 <p>A comprehensive health tracking application that calculates BMI, tracks nutrition, and provides personalized health recommendations based on user data and goals.</p>
@@ -101,7 +524,7 @@
         <!-- Project 3 -->
         <div id="project3" class="project-detail-box">
             <h3>Pokepedia - Pokémon Database</h3>
-            <img src="assets/images/project3.jpg" alt="Pokepedia App" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pokepedia App" loading="lazy">
             <div class="project-info">
                 <h4>Description</h4>
                 <p>A comprehensive Pokémon database application that provides detailed information about all Pokémon species, their stats, abilities, and evolution chains with beautiful UI and smooth animations.</p>
@@ -134,7 +557,7 @@
         <!-- Project 4 -->
         <div id="project4" class="project-detail-box">
             <h3>Task Manager Pro</h3>
-            <img src="assets/images/project4.jpg" alt="Task Manager App" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1139&q=80" alt="Task Manager App" loading="lazy">
             <div class="project-info">
                 <h4>Description</h4>
                 <p>A productivity application for managing tasks, projects, and deadlines with collaboration features for teams and individuals. Includes smart notifications and progress tracking.</p>
@@ -178,6 +601,76 @@
 </footer>
 
 <!-- Custom JS -->
-<script src="script.js"></script>
+<script>
+    // Menu Toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+
+    menuIcon.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        body.setAttribute('data-theme', newTheme);
+
+        if (newTheme === 'dark') {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        // Save theme preference
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'light') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    }
+
+    // Scroll Animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe project boxes
+    document.querySelectorAll('.project-detail-box').forEach(box => {
+        observer.observe(box);
+    });
+
+    // Scroll to top
+    document.querySelector('.footer-iconTop a').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
 </body>
 </html>
