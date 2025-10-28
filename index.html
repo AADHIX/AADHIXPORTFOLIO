@@ -6,1120 +6,11 @@
     <title>Adarsh Ajay | Flutter Developer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <style>
-        /* Enhanced Glass Morphism Theme */
-        :root {
-            --bg-color: #0f0f1b;
-            --second-bg-color: #1a1a2e;
-            --text-color: #e6e6ff;
-            --main-color: #6366f1;
-            --accent-color: #8b5cf6;
-            --secondary-accent: #06b6d4;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            --gradient-1: linear-gradient(135deg, #6366f1, #8b5cf6);
-            --gradient-2: linear-gradient(135deg, #8b5cf6, #06b6d4);
-            --gradient-glass: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="light"] {
-            --bg-color: #f0f4ff;
-            --second-bg-color: #e6f0ff;
-            --text-color: #1e293b;
-            --main-color: #4f46e5;
-            --accent-color: #7c3aed;
-            --secondary-accent: #0891b2;
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --glass-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.1);
-            --gradient-glass: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
-        }
-
-        /* Enhanced Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            border: none;
-            outline: none;
-            scroll-behavior: smooth;
-        }
-
-        html {
-            font-size: 62.5%;
-            overflow-x: hidden;
-        }
-
-        body {
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            cursor: none;
-            overflow-x: hidden;
-        }
-
-        /* Enhanced Glass Morphism Effects */
-        .glass-effect {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-        }
-
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: 20px;
-        }
-
-        /* Enhanced Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem 9%;
-            background: rgba(15, 15, 27, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        [data-theme="light"] .header {
-            background: rgba(240, 244, 255, 0.8);
-        }
-
-        .header.sticky {
-            background: rgba(15, 15, 27, 0.95);
-        }
-
-        [data-theme="light"] .header.sticky {
-            background: rgba(240, 244, 255, 0.95);
-        }
-
-        .logo {
-            font-size: 3.2rem;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .navbar a {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            font-family: 'Poppins', sans-serif;
-            padding: 1rem 0;
-        }
-
-        .navbar a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-1);
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-
-        .navbar a:hover::after,
-        .navbar a.active::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            background: var(--glass-bg);
-            transform: scale(1.1);
-        }
-
-        #menu-icon {
-            display: none;
-            font-size: 3.6rem;
-            color: var(--text-color);
-            cursor: pointer;
-        }
-
-        /* Enhanced Home Section with Larger Fonts */
-        .home {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-color);
-            gap: 8rem;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            padding: 12rem 9% 2rem;
-        }
-
-        .home::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(80px);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .home::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: var(--gradient-2);
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(80px);
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            50% {
-                transform: translateY(-20px) scale(1.05);
-            }
-        }
-
-        .home-content {
-            flex: 1;
-            z-index: 1;
-        }
-
-        .home-content h3 {
-            font-size: 4rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: slideInLeft 1s ease-out;
-        }
-
-        .home-content h1 {
-            font-size: 7.2rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 2.5rem;
-            font-family: 'Poppins', sans-serif;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 30px rgba(99, 102, 241, 0.3);
-            animation: slideInLeft 1s ease-out 0.2s both;
-        }
-
-        .home-content h3:nth-of-type(2) {
-            font-size: 4.5rem;
-            margin-bottom: 3rem;
-            animation: slideInLeft 1s ease-out 0.4s both;
-        }
-
-        .multiple-text {
-            position: relative;
-            display: inline-block;
-            min-height: 1.2em;
-        }
-
-        .multiple-text::after {
-            content: '|';
-            animation: blink 1s infinite;
-            margin-left: 0.5rem;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .home-content p {
-            font-size: 2.2rem;
-            margin: 3rem 0 5rem;
-            color: var(--text-color);
-            opacity: 0.9;
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.8;
-            animation: slideInLeft 1s ease-out 0.6s both;
-        }
-
-        .home-img {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-            position: relative;
-        }
-
-        .home-img::before {
-            content: '';
-            position: absolute;
-            width: 120%;
-            height: 120%;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(40px);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.15;
-            }
-        }
-
-        .home-img img {
-            max-width: 420px;
-            height: auto;
-            animation: floatImage 4s ease-in-out infinite;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            background: var(--gradient-1) padding-box, var(--gradient-1) border-box;
-            box-shadow:
-                0 20px 60px rgba(99, 102, 241, 0.3),
-                0 0 0 1px rgba(99, 102, 241, 0.1);
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes floatImage {
-            0%, 100% {
-                transform: translateY(0) scale(1) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-15px) scale(1.02) rotate(1deg);
-            }
-            66% {
-                transform: translateY(10px) scale(0.98) rotate(-1deg);
-            }
-        }
-
-        /* Enhanced Social Media */
-        .social-media {
-            display: flex;
-            gap: 2rem;
-            margin: 4rem 0;
-            animation: slideInLeft 1s ease-out 0.8s both;
-        }
-
-        .social-media a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 6rem;
-            height: 6rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            font-size: 2.5rem;
-            color: var(--main-color);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-media a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-1);
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .social-media a:hover::before {
-            left: 0;
-        }
-
-        .social-media a:hover {
-            color: white;
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Enhanced Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.8rem 4rem;
-            background: var(--gradient-1);
-            border-radius: 6rem;
-            box-shadow:
-                0 10px 30px rgba(99, 102, 241, 0.4),
-                inset 0 1px 1px rgba(255, 255, 255, 0.2);
-            font-size: 1.8rem;
-            color: white;
-            font-weight: 700;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            animation: slideInLeft 1s ease-out 1s both;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-2);
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow:
-                0 15px 40px rgba(99, 102, 241, 0.6),
-                inset 0 1px 1px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Enhanced Sections */
-        section {
-            min-height: 100vh;
-            padding: 10rem 9% 2rem;
-            position: relative;
-        }
-
-        .heading {
-            text-align: center;
-            font-size: 5.6rem;
-            font-weight: 800;
-            margin-bottom: 6rem;
-            font-family: 'Poppins', sans-serif;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 30px rgba(99, 102, 241, 0.2);
-        }
-
-        /* Enhanced About Section */
-        .about {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6rem;
-            background: var(--second-bg-color);
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 300px;
-            height: 300px;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            opacity: 0.05;
-            filter: blur(60px);
-        }
-
-        .about-img img {
-            width: 40vw;
-            border-radius: 2rem;
-            box-shadow:
-                0 20px 60px var(--glass-shadow),
-                0 0 0 1px var(--glass-border);
-            transition: var(--transition);
-        }
-
-        .about-content h2 {
-            text-align: left;
-            line-height: 1.2;
-            margin-bottom: 3rem;
-        }
-
-        .about-content h3 {
-            font-size: 3.2rem;
-            margin-bottom: 2.5rem;
-            color: var(--main-color);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .about-content p {
-            font-size: 1.8rem;
-            margin: 2.5rem 0 3.5rem;
-            line-height: 1.8;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .about-details {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .detail {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .detail:hover {
-            transform: translateX(10px) translateY(-5px);
-            box-shadow: 0 15px 40px var(--glass-shadow);
-        }
-
-        /* Enhanced Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 4rem;
-        }
-
-        .skills-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            padding: 4rem 3rem;
-            border-radius: 2rem;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            min-height: 400px;
-        }
-
-        .skills-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: var(--gradient-1);
-        }
-
-        .skills-box:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px var(--glass-shadow);
-        }
-
-        .skill-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-
-        .skills-box:hover .skill-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .skill-card-front,
-        .skill-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .skill-card-back {
-            transform: rotateY(180deg);
-            text-align: left;
-        }
-
-        .skill-icon {
-            font-size: 6rem;
-            margin-bottom: 2rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .flip-indicator {
-            margin-top: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.4rem;
-            opacity: 0.7;
-        }
-
-        .skill-bars-container {
-            width: 100%;
-        }
-
-        .skill-item {
-            margin-bottom: 2rem;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-name {
-            font-size: 1.6rem;
-            font-weight: 600;
-        }
-
-        .skill-percentage {
-            font-size: 1.4rem;
-            color: var(--main-color);
-        }
-
-        .skill-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--glass-bg);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient-1);
-            border-radius: 4px;
-            transition: width 1.5s ease-in-out;
-        }
-
-        /* Enhanced Projects Section */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 4rem;
-        }
-
-        .projects-box {
-            position: relative;
-            border-radius: 2rem;
-            overflow: hidden;
-            display: flex;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            transition: var(--transition);
-            height: 350px;
-        }
-
-        .projects-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .projects-layer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(transparent, var(--main-color));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 0 4rem;
-            transform: translateY(100%);
-            transition: var(--transition);
-        }
-
-        .projects-box:hover .projects-layer {
-            transform: translateY(0);
-        }
-
-        .projects-box:hover img {
-            transform: scale(1.1);
-        }
-
-        .projects-layer h4 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .projects-layer p {
-            font-size: 1.6rem;
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .projects-box:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px var(--glass-shadow);
-        }
-
-        .view-all {
-            text-align: center;
-            margin-top: 6rem;
-        }
-
-        /* Enhanced Certificates Section */
-        .certificates-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 4rem;
-        }
-
-        .certificate-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 2rem;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .certificate-box:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px var(--glass-shadow);
-        }
-
-        .rive-container {
-            position: relative;
-            width: 100%;
-            height: 250px;
-            background: var(--gradient-glass);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .certificate-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .certificate-box:hover .certificate-overlay {
-            opacity: 1;
-        }
-
-        .certificate-overlay i {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .certificate-overlay h3 {
-            font-size: 2.4rem;
-            text-align: center;
-        }
-
-        .certificate-content {
-            padding: 3rem;
-        }
-
-        .certificate-content h3 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-            color: var(--main-color);
-        }
-
-        .certificate-content p {
-            font-size: 1.6rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .certificate-stats {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.4rem;
-            opacity: 0.8;
-        }
-
-        /* Enhanced Contact Section */
-        .contact form {
-            max-width: 80rem;
-            margin: 1rem auto;
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .contact form .input-box {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact form .input-box input {
-            flex: 1 1 45%;
-        }
-
-        .contact form .input-box input,
-        .contact form textarea {
-            width: 100%;
-            padding: 2rem;
-            font-size: 1.6rem;
-            color: var(--text-color);
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
-            transition: var(--transition);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .contact form .input-box input:focus,
-        .contact form textarea:focus {
-            border-color: var(--main-color);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .contact form textarea {
-            resize: none;
-            margin-bottom: 3rem;
-        }
-
-        /* Enhanced Footer */
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 3rem 9%;
-            background: var(--second-bg-color);
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .footer-text p {
-            font-size: 1.6rem;
-        }
-
-        .footer-iconTop a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            background: var(--main-color);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .footer-iconTop a:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--main-color);
-        }
-
-        .footer-iconTop a i {
-            font-size: 2.4rem;
-            color: var(--bg-color);
-        }
-
-        /* Custom Cursor */
-        .cursor-dot,
-        .cursor-outline {
-            pointer-events: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            transition: opacity 0.3s;
-        }
-
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--main-color);
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--main-color);
-            transition: all 0.2s ease-out;
-        }
-
-        .cursor-outline.hover {
-            width: 60px;
-            height: 60px;
-            border-color: var(--accent-color);
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        /* Animations */
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            html {
-                font-size: 55%;
-            }
-
-            .home-content h1 {
-                font-size: 6.5rem;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .header {
-                padding: 2rem 3%;
-            }
-
-            section {
-                padding: 10rem 3% 2rem;
-            }
-
-            .home {
-                gap: 4rem;
-                padding: 10rem 3% 2rem;
-            }
-
-            .home-content h1 {
-                font-size: 5.5rem;
-            }
-
-            .home-content h3 {
-                font-size: 3.5rem;
-            }
-
-            .about {
-                flex-direction: column;
-                gap: 4rem;
-            }
-
-            .about-img img {
-                width: 70vw;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #menu-icon {
-                display: block;
-            }
-
-            .navbar {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                padding: 1rem 3%;
-                background: var(--bg-color);
-                border-top: 1px solid var(--glass-border);
-                box-shadow: 0 8px 32px var(--glass-shadow);
-                display: none;
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .navbar.active {
-                display: flex;
-            }
-
-            .navbar a {
-                display: block;
-                font-size: 2rem;
-                margin: 3rem 0;
-                text-align: center;
-            }
-
-            .home {
-                flex-direction: column;
-                text-align: center;
-                gap: 5rem;
-            }
-
-            .home-content h1 {
-                font-size: 4.8rem;
-            }
-
-            .home-content h3 {
-                font-size: 3rem;
-            }
-
-            .home-img img {
-                max-width: 320px;
-            }
-
-            .about-details {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-container,
-            .projects-container,
-            .certificates-container {
-                grid-template-columns: 1fr;
-            }
-
-            .contact form .input-box input {
-                flex: 1 1 100%;
-            }
-
-            .footer {
-                flex-direction: column;
-                gap: 2rem;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 450px) {
-            html {
-                font-size: 50%;
-            }
-
-            .home-content h1 {
-                font-size: 4.2rem;
-            }
-
-            .home-content h3 {
-                font-size: 2.6rem;
-            }
-
-            .heading {
-                font-size: 4.5rem;
-            }
-
-            .skills-container,
-            .projects-container,
-            .certificates-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
-<body data-theme="dark">
+<body>
 <!-- Header/Navbar -->
-<header class="header glass-effect">
+<header class="header">
     <a href="#" class="logo">AD</a>
 
     <i class="fas fa-bars" id="menu-icon"></i>
@@ -1142,11 +33,12 @@
     <div class="home-content">
         <h3>Hello, It's Me</h3>
         <h1>Adarsh Ajay</h1>
-        <h3>And I'm a <span class="multiple-text">Flutter Developer</span></h3>
-        <p>Passionate about building cross-platform applications with Flutter. Creating beautiful, performant mobile experiences that users love.</p>
+        <h3>And I'm a <span class="multiple-text"></span></h3>
+        <p>Passionate about building cross-platform applications with Flutter</p>
         <div class="social-media">
             <a href="https://github.com/AADHIX" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="https://www.linkedin.com/in/adarshajay19200/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
         <a href="assets/resume.pdf" download="Adarsh_Ajay_Resume.pdf" class="btn">Download CV</a>
@@ -1174,23 +66,23 @@
             optimize app performance. Let's connect and bring your ideas to life!
         </p>
         <div class="about-details">
-            <div class="detail glass-card">
+            <div class="detail">
                 <i class="fas fa-user-graduate"></i>
                 <span>Education: B.Tech in Computer Science and Engineering</span>
             </div>
-            <div class="detail glass-card">
+            <div class="detail">
                 <i class="fas fa-user-graduate"></i>
                 <span>Education: Diploma in Computer Science and Engineering</span>
             </div>
-            <div class="detail glass-card">
+            <div class="detail">
                 <i class="fas fa-envelope"></i>
                 <span>Email: aadhiadarsh192001@gmail.com</span>
             </div>
-            <div class="detail glass-card">
+            <div class="detail">
                 <i class="fas fa-phone"></i>
                 <span>Phone: +91 95445 32707</span>
             </div>
-            <div class="detail glass-card">
+            <div class="detail">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>Location: Kerala, India</span>
             </div>
@@ -1203,168 +95,57 @@
 <section class="skills" id="skills">
     <h2 class="heading">My <span>Skills</span></h2>
     <div class="skills-container">
-        <!-- Technical Skills -->
-        <div class="skills-box glass-card">
-            <div class="skill-card-inner">
-                <div class="skill-card-front">
-                    <i class="fas fa-code skill-icon"></i>
-                    <h3>Technical Skills</h3>
-                    <p>Click to view my technical expertise</p>
-                    <div class="flip-indicator">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>Hover to flip</span>
-                    </div>
-                </div>
-                <div class="skill-card-back">
-                    <div class="skill-bars-container">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Flutter & Dart</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Firebase</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">RESTful APIs</span>
-                                <span class="skill-percentage">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Git & GitHub</span>
-                                <span class="skill-percentage">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="skills-box">
+            <i class="fas fa-code"></i>
+            <h3>Application Development</h3>
+            <p>Android, iOS & Web Development</p>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="90">Dart - 90%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="90">Flutter Framework - 90%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="75">UI/UX Design Principles - 75%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="65">Backend Integration - 65%</div>
             </div>
         </div>
 
-        <!-- Soft Skills -->
-        <div class="skills-box glass-card">
-            <div class="skill-card-inner">
-                <div class="skill-card-front">
-                    <i class="fas fa-users skill-icon"></i>
-                    <h3>Soft Skills</h3>
-                    <p>Click to view my interpersonal skills</p>
-                    <div class="flip-indicator">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>Hover to flip</span>
-                    </div>
-                </div>
-                <div class="skill-card-back">
-                    <div class="skill-bars-container">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Problem Solving</span>
-                                <span class="skill-percentage">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Team Collaboration</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Communication</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Time Management</span>
-                                <span class="skill-percentage">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="skills-box">
+            <i class="fas fa-paint-brush"></i>
+            <h3>UI/UX Design</h3>
+            <p>Creative Design Tools</p>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="85">Figma - 85%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="70">Adobe XD - 70%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="65">Procreate - 65%</div>
             </div>
         </div>
 
-        <!-- Tools & Technologies -->
-        <div class="skills-box glass-card">
-            <div class="skill-card-inner">
-                <div class="skill-card-front">
-                    <i class="fas fa-tools skill-icon"></i>
-                    <h3>Tools & Tech</h3>
-                    <p>Click to view tools I work with</p>
-                    <div class="flip-indicator">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>Hover to flip</span>
-                    </div>
-                </div>
-                <div class="skill-card-back">
-                    <div class="skill-bars-container">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Android Studio</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">VS Code</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Figma</span>
-                                <span class="skill-percentage">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Postman</span>
-                                <span class="skill-percentage">70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="skills-box">
+            <i class="fas fa-chart-line"></i>
+            <h3>Other Skills</h3>
+            <p>Professional Soft Skills</p>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="95">Project Management - 95%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="80">Public Speaking - 80%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="75">Technical Writing - 75%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="85">Critical Thinking - 85%</div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" data-width="90">Time Management - 90%</div>
             </div>
         </div>
     </div>
@@ -1372,40 +153,46 @@
 
 <!-- Projects Section -->
 <section class="projects" id="projects">
-    <h2 class="heading">Latest <span>Projects</span></h2>
+    <h2 class="heading">My <span>Projects</span></h2>
     <div class="projects-container">
-        <!-- Project 1 -->
-        <div class="projects-box glass-card">
-            <img src="assets/images/project1.jpg" alt="Project 1">
+        <div class="projects-box">
+            <img src="assets/images/project1.jpg" alt="Kcal - Smart Parking System" loading="lazy">
             <div class="projects-layer">
-                <h4>E-Commerce App</h4>
-                <p>Flutter-based e-commerce application with Firebase backend, payment integration, and real-time inventory management.</p>
-                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                <h4>Kcal</h4>
+                <p>An IoT based smart parking system with real-time monitoring</p>
+                <a href="projects.html#project1" class="btn">View Details</a>
             </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="projects-box glass-card">
-            <img src="assets/images/project2.jpg" alt="Project 2">
+        <div class="projects-box">
+            <img src="assets/images/project2.jpg" alt="BMI Calculator" loading="lazy">
             <div class="projects-layer">
-                <h4>Weather App</h4>
-                <p>Real-time weather forecasting app with beautiful UI, location-based services, and detailed weather analytics.</p>
-                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                <h4>BMI Calculator</h4>
+                <p>Health tracking app with personalized recommendations</p>
+                <a href="projects.html#project2" class="btn">View Details</a>
             </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="projects-box glass-card">
-            <img src="assets/images/project3.jpg" alt="Project 3">
+        <div class="projects-box">
+            <img src="assets/images/project3.jpg" alt="Pokepedia" loading="lazy">
+            <div class="projects-layer">
+                <h4>Pokepedia</h4>
+                <p>Comprehensive Pokémon database and collection manager</p>
+                <a href="projects.html#project3" class="btn">View Details</a>
+            </div>
+        </div>
+
+        <div class="projects-box">
+            <img src="assets/images/project4.jpg" alt="Task Manager" loading="lazy">
             <div class="projects-layer">
                 <h4>Task Manager</h4>
-                <p>Productivity app with task management, reminders, and collaborative features using Flutter and SQLite.</p>
-                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                <p>Productivity app for managing daily tasks and projects</p>
+                <a href="projects.html#project4" class="btn">View Details</a>
             </div>
         </div>
     </div>
-    <div class="view-all">
-        <a href="#" class="btn">View All Projects</a>
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="projects.html" class="btn">View All Projects</a>
     </div>
 </section>
 
@@ -1413,78 +200,30 @@
 <section class="certificates" id="certificates">
     <h2 class="heading">My <span>Certificates</span></h2>
     <div class="certificates-container">
-        <!-- Certificate 1 -->
-        <div class="certificate-box glass-card">
-            <div class="rive-container">
-                <div class="certificate-overlay">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Flutter Development</h3>
-                </div>
-            </div>
+        <div class="certificate-box">
+            <img src="https://placehold.co/400x300/1e1e1e/bb86fc?text=Figma%0AUI%2FUX%20Design" alt="Figma UI/UX Design Certificate">
             <div class="certificate-content">
-                <h3>Flutter & Dart - The Complete Guide</h3>
-                <p>Comprehensive Flutter development course covering Dart programming, widget tree, state management, and app deployment.</p>
-                <div class="certificate-stats">
-                    <div class="stat">
-                        <i class="fas fa-clock"></i>
-                        <span>45 hours</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>4.8/5</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">View Certificate</a>
+                <h3>Figma UI/UX Design</h3>
+                <p>Web based tool for UI/UX designs and prototyping</p>
+                <a href="assets/certificates/figma.pdf" target="_blank" class="btn">View Certificate</a>
             </div>
         </div>
 
-        <!-- Certificate 2 -->
-        <div class="certificate-box glass-card">
-            <div class="rive-container">
-                <div class="certificate-overlay">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Firebase Mastery</h3>
-                </div>
-            </div>
+        <div class="certificate-box">
+            <img src="https://placehold.co/400x300/1e1e1e/bb86fc?text=Flutter%0AMobile%20Development" alt="Flutter Development Certificate">
             <div class="certificate-content">
-                <h3>Firebase for Flutter Developers</h3>
-                <p>Master Firebase services including Authentication, Cloud Firestore, Cloud Storage, and Cloud Functions integration.</p>
-                <div class="certificate-stats">
-                    <div class="stat">
-                        <i class="fas fa-clock"></i>
-                        <span>30 hours</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>4.7/5</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">View Certificate</a>
+                <h3>Flutter Development</h3>
+                <p>Android Application development Using Flutter</p>
+                <a href="assets/certificates/flutter.pdf" target="_blank" class="btn">View Certificate</a>
             </div>
         </div>
 
-        <!-- Certificate 3 -->
-        <div class="certificate-box glass-card">
-            <div class="rive-container">
-                <div class="certificate-overlay">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Advanced Dart</h3>
-                </div>
-            </div>
+        <div class="certificate-box">
+            <img src="https://placehold.co/400x300/1e1e1e/bb86fc?text=IoT%0AInternet%20of%20Things" alt="IoT Certificate">
             <div class="certificate-content">
-                <h3>Dart Programming - Advanced Concepts</h3>
-                <p>Advanced Dart programming concepts including asynchronous programming, streams, isolates, and effective Dart patterns.</p>
-                <div class="certificate-stats">
-                    <div class="stat">
-                        <i class="fas fa-clock"></i>
-                        <span>25 hours</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>4.9/5</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">View Certificate</a>
+                <h3>Internet of Things</h3>
+                <p>IoT systems and embedded programming</p>
+                <a href="assets/certificates/iot.pdf" target="_blank" class="btn">View Certificate</a>
             </div>
         </div>
     </div>
@@ -1492,15 +231,15 @@
 
 <!-- Contact Section -->
 <section class="contact" id="contact">
-    <h2 class="heading">Contact <span>Me!</span></h2>
-    <form action="#">
+    <h2 class="heading">Contact <span>Me</span></h2>
+    <form action="#" id="contact-form">
         <div class="input-box">
             <input type="text" placeholder="Full Name" required>
             <input type="email" placeholder="Email Address" required>
         </div>
         <div class="input-box">
             <input type="tel" placeholder="Mobile Number">
-            <input type="text" placeholder="Email Subject">
+            <input type="text" placeholder="Email Subject" required>
         </div>
         <textarea cols="30" rows="10" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn">Send Message</button>
@@ -1508,19 +247,25 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer glass-effect">
+<footer class="footer">
     <div class="footer-text">
         <p>Copyright &copy; 2024 by Adarsh Ajay | All Rights Reserved.</p>
     </div>
     <div class="footer-iconTop">
-        <a href="#home"><i class="fas fa-arrow-up"></i></a>
+        <a href="#home" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
     </div>
 </footer>
 
-<!-- Custom Cursor -->
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
+<div class="cursor-dot" data-cursor-dot></div>
+<div class="cursor-outline" data-cursor-outline></div>
 
+<!-- Scroll Reveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<!-- Typed JS -->
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+<!-- Custom JS -->
 <script src="script.js"></script>
 </body>
 </html>
