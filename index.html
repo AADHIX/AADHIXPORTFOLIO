@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adarsh Ajay | Flutter Developer</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <style>
         /* Enhanced Glass Morphism Theme */
         :root {
@@ -60,6 +62,7 @@
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
+            cursor: none;
             overflow-x: hidden;
         }
 
@@ -414,6 +417,222 @@
                 inset 0 1px 1px rgba(255, 255, 255, 0.3);
         }
 
+        /* Enhanced Sections */
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem;
+            position: relative;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 5.6rem;
+            font-weight: 800;
+            margin-bottom: 6rem;
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Enhanced About Section */
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6rem;
+            background: var(--second-bg-color);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            opacity: 0.05;
+            filter: blur(60px);
+        }
+
+        .about-img img {
+            width: 40vw;
+            border-radius: 2rem;
+            box-shadow:
+                0 20px 60px var(--glass-shadow),
+                0 0 0 1px var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .about-content h2 {
+            text-align: left;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+        }
+
+        .about-content h3 {
+            font-size: 3.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--main-color);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .about-content p {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 3.5rem;
+            line-height: 1.8;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .about-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .detail {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .detail:hover {
+            transform: translateX(10px) translateY(-5px);
+            box-shadow: 0 15px 40px var(--glass-shadow);
+        }
+
+        /* Enhanced Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 4rem;
+        }
+
+        .skills-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 4rem 3rem;
+            border-radius: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient-1);
+        }
+
+        .skills-box:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px var(--glass-shadow);
+        }
+
+        /* Enhanced Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 4rem;
+        }
+
+        .projects-box {
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            display: flex;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            height: 350px;
+        }
+
+        .projects-box:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px var(--glass-shadow);
+        }
+
+        /* Enhanced Certificates Section */
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 4rem;
+        }
+
+        .certificate-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .certificate-box:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px var(--glass-shadow);
+        }
+
+        /* Enhanced Contact Section */
+        .contact form {
+            max-width: 80rem;
+            margin: 1rem auto;
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .contact form .input-box input,
+        .contact form textarea {
+            width: 100%;
+            padding: 2rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact form .input-box input:focus,
+        .contact form textarea:focus {
+            border-color: var(--main-color);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 3rem 9%;
+            background: var(--second-bg-color);
+            border-top: 1px solid var(--glass-border);
+        }
+
         /* Animations */
         @keyframes slideInLeft {
             from {
@@ -423,6 +642,28 @@
             to {
                 opacity: 1;
                 transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -492,6 +733,10 @@
             .home-content h3 {
                 font-size: 2.6rem;
             }
+
+            .heading {
+                font-size: 4.5rem;
+            }
         }
     </style>
 </head>
@@ -516,42 +761,26 @@
 </header>
 
 <!-- Home Section -->
+
 <section class="home" id="home">
     <div class="home-content">
         <h3>Hello, It's Me</h3>
         <h1>Adarsh Ajay</h1>
         <h3>And I'm a <span class="multiple-text"></span></h3>
+
         <p>Passionate about building cross-platform applications with Flutter. Creating beautiful, performant mobile experiences that users love.</p>
         <div class="social-media">
             <a href="https://github.com/AADHIX" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="https://www.linkedin.com/in/adarshajay19200/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <a href="#" class="btn">Download CV</a>
+        <a href="assets/resume.pdf" download="Adarsh_Ajay_Resume.pdf" class="btn">Download CV</a>
     </div>
     <div class="home-img">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Adarsh Ajay - Flutter Developer" loading="lazy">
+        <img src="assets/images/profilee.png" alt="Adarsh Ajay - Flutter Developer" loading="lazy">
     </div>
 </section>
 
-<!-- Typed JS -->
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
-<!-- Custom JS -->
-<script>
-    // Initialize Typed.js for the multiple-text animation
-    document.addEventListener('DOMContentLoaded', function() {
-        const typed = new Typed('.multiple-text', {
-            strings: ['Flutter Developer', 'UI/UX Designer', 'SQL Developer'],
-            typeSpeed: 100,
-            backSpeed: 100,
-            backDelay: 1000,
-            loop: true
-        });
-    });
-</script>
-</body>
-</html>
 
 <!-- About Section -->
 <section class="about" id="about">
