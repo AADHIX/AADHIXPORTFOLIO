@@ -272,3 +272,221 @@ window.addEventListener('DOMContentLoaded', () => {
         bar.style.width = width + '%';
     });
 });
+
+// Rive Animations for Certificates Section
+function initializeRiveAnimations() {
+    // Check if Rive is available
+    if (typeof rive === 'undefined') {
+        console.warn('Rive is not available, using fallback animations');
+        initializeFallbackAnimations();
+        return;
+    }
+
+    // Rive animations configuration
+    const riveConfigs = [
+        {
+            canvasId: 'ui-ux-animation',
+            riveFile: 'https://cdn.rive.app/animations/vehicles.riv',
+            artboard: 'Vehicle',
+            stateMachine: 'State Machine 1'
+        },
+        {
+            canvasId: 'flutter-animation',
+            riveFile: 'https://cdn.rive.app/animations/off_road_car.riv',
+            artboard: 'New Artboard',
+            stateMachine: 'State Machine 1'
+        },
+        {
+            canvasId: 'iot-animation',
+            riveFile: 'https://cdn.rive.app/animations/truck.riv',
+            artboard: 'Truck',
+            stateMachine: 'State Machine 1'
+        }
+    ];
+
+    // Initialize Rive animations
+    riveConfigs.forEach(config => {
+        const canvas = document.getElementById(config.canvasId);
+        if (canvas) {
+            // Add loading state
+            canvas.parentElement.classList.add('rive-loading');
+
+            try {
+                // Initialize Rive
+                new rive.Rive({
+                    src: config.riveFile,
+                    canvas: canvas,
+                    artboard: config.artboard,
+                    stateMachine: config.stateMachine,
+                    autoplay: true,
+                    onLoad: () => {
+                        // Remove loading state when loaded
+                        canvas.parentElement.classList.remove('rive-loading');
+                        console.log(`${config.canvasId} animation loaded successfully`);
+                    },
+                    onLoadError: (error) => {
+                        console.error(`Error loading ${config.canvasId}:`, error);
+                        // Fallback to CSS animation if Rive fails
+                        fallbackAnimation(canvas.parentElement, config.canvasId);
+                    }
+                });
+            } catch (error) {
+                console.error(`Error initializing Rive for ${config.canvasId}:`, error);
+                fallbackAnimation(canvas.parentElement, config.canvasId);
+            }
+        }
+    });
+}
+
+// Fallback animation if Rive fails to load
+function fallbackAnimation(container, canvasId) {
+    container.classList.remove('rive-loading');
+    container.innerHTML = `
+        <div class="fallback-animation">
+            <i class="fas ${getFallbackIcon(canvasId)}"></i>
+            <div class="pulse-effect"></div>
+        </div>
+    `;
+}
+
+// Initialize all fallback animations
+function initializeFallbackAnimations() {
+    document.querySelectorAll('.rive-container').forEach(container => {
+        const canvasId = container.querySelector('canvas')?.id;
+        if (canvasId) {
+            fallbackAnimation(container, canvasId);
+        }
+    });
+}
+
+// Get appropriate icon for fallback animation
+function getFallbackIcon(canvasId) {
+    const icons = {
+        'ui-ux-animation': 'fa-palette',
+        'flutter-animation': 'fa-mobile-alt',
+        'iot-animation': 'fa-microchip'
+    };
+    return icons[canvasId] || 'fa-certificate';
+}
+
+// Enhanced certificate interactions
+function enhanceCertificateInteractions() {
+    const certificateBoxes = document.querySelectorAll('.certificate-box');
+
+    certificateBoxes.forEach(box => {
+        // Add click animation
+        box.addEventListener('click', (e) => {
+            if (!e.target.closest('a')) {
+                box.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    box.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Add keyboard navigation
+        box.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const link = box.querySelector('a.btn');
+                if (link) {
+                    link.click();
+                }
+            }
+        });
+
+        // Add focus styles
+        box.setAttribute('tabindex', '0');
+
+        // Add hover sound effect (optional)
+        box.addEventListener('mouseenter', () => {
+            // You can add a subtle sound effect here if desired
+        });
+    });
+}
+
+// Intersection Observer for certificate animations
+function observeCertificateAnimations() {
+    const certificatesSection = document.querySelector('.certificates');
+    const certificateBoxes = document.querySelectorAll('.certificate-box');
+
+    if (certificatesSection && certificateBoxes.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        certificateBoxes.forEach(box => {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(50px)';
+            observer.observe(box);
+        });
+    }
+}
+
+// Load Rive.js and initialize animations
+function loadRiveAndInitialize() {
+    // Check if Rive is already loaded
+    if (typeof rive !== 'undefined') {
+        initializeRiveAnimations();
+        return;
+    }
+
+    // Load Rive.js from CDN
+    const riveScript = document.createElement('script');
+    riveScript.src = 'https://unpkg.com/@rive-app/canvas@2.7.0';
+    riveScript.onload = function() {
+        console.log('Rive.js loaded successfully');
+        // Initialize Rive animations after script loads
+        setTimeout(initializeRiveAnimations, 500);
+    };
+    riveScript.onerror = function() {
+        console.warn('Rive.js failed to load, using fallback animations');
+        // Initialize fallback animations
+        initializeFallbackAnimations();
+    };
+    document.head.appendChild(riveScript);
+}
+
+// Initialize all certificate-related functionality
+function initializeCertificates() {
+    enhanceCertificateInteractions();
+    observeCertificateAnimations();
+
+    // Only load Rive if we're on a page with certificates
+    const certificatesSection = document.querySelector('.certificates');
+    if (certificatesSection) {
+        loadRiveAndInitialize();
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCertificates();
+});
+
+// Add to your existing window load event
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+
+    // Re-initialize Rive animations if needed
+    const certificatesSection = document.querySelector('.certificates');
+    if (certificatesSection && typeof rive !== 'undefined') {
+        setTimeout(initializeRiveAnimations, 500);
+    }
+});
+
+// Handle theme changes for Rive animations
+themeToggle.addEventListener('click', () => {
+    // Re-initialize Rive animations on theme change if needed
+    setTimeout(() => {
+        if (typeof rive !== 'undefined' && document.querySelector('.certificates')) {
+            initializeRiveAnimations();
+        }
+    }, 300);
+});
